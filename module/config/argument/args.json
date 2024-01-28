@@ -284,7 +284,7 @@
       }
     }
   },
-  "Auto_Mission": {
+  "AutoMission": {
     "Scheduler": {
       "Enable": {
         "type": "checkbox",
@@ -301,7 +301,7 @@
       },
       "Command": {
         "type": "input",
-        "value": "Auto_Mission",
+        "value": "AutoMission",
         "display": "hide"
       },
       "ServerUpdate": {
@@ -344,6 +344,61 @@
           "clear",
           "three_stars",
           "three_stars_chest"
+        ]
+      }
+    }
+  },
+  "AutoEvent": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "AutoEvent",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "EventStory": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars"
+        ]
+      }
+    },
+    "EventQuest": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars"
         ]
       }
     }

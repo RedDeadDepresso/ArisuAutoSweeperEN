@@ -38,8 +38,12 @@
       "name": "Settings",
       "help": ""
     },
-    "Auto_Mission": {
+    "AutoMission": {
       "name": "Auto-Mission",
+      "help": ""
+    },
+    "AutoEvent": {
+      "name": "Auto-Event",
       "help": ""
     },
     "Cafe": {
@@ -319,7 +323,7 @@
     },
     "Area": {
       "name": "Area",
-      "help": "Currently only between 6 and 16. Use > to connect multiple areas. Example: 6 > 7 > 8"
+      "help": ""
     },
     "Completion": {
       "name": "Completion level",
@@ -327,6 +331,38 @@
       "clear": "Clear",
       "three_stars": "3 Stars",
       "three_stars_chest": "3 Stars + Chest"
+    }
+  },
+  "EventStory": {
+    "_info": {
+      "name": "Story",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Completion": {
+      "name": "Completion level",
+      "help": "",
+      "clear": "Clear",
+      "three_stars": "3 Stars"
+    }
+  },
+  "EventQuest": {
+    "_info": {
+      "name": "Quest",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Completion": {
+      "name": "Completion level",
+      "help": "",
+      "clear": "Clear",
+      "three_stars": "3 Stars"
     }
   },
   "Cafe": {

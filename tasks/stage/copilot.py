@@ -1,9 +1,12 @@
+import re
+
 from module.base.timer import Timer
+from module.exception import RequestHumanTakeover
 from module.logger import logger
 from module.ui.switch import Switch
 from module.ocr.ocr import Digit
 from tasks.base.ui import UI
-from tasks.base.assets.assets_base_page import MISSION_CHECK
+from tasks.base.assets.assets_base_page import MISSION_CHECK, EVENT_CHECK
 from tasks.stage.assets.assets_stage_copilot import *
 from tasks.stage.stage import StageState, Stage
 
@@ -42,6 +45,40 @@ class Copilot(UI):
         self.ocr_unit = Digit(OCR_UNIT)
 
     """---------------------- UTILITY METHODS ------------------------"""
+    def get_default_type_to_preset(self) -> dict[str, list[int, int]]:
+        """
+        Validate preset settings and returs a dictionary
+        mapping each type to its preset e.g {burst1: [1, 1]}
+        """
+        formation_config = self.config.cross_get("Settings.Formation")
+        type_to_preset: dict[str, str] =  {
+            "burst1": formation_config["burst1"],
+            "burst2": formation_config["burst2"],
+            "pierce1": formation_config["pierce1"],
+            "pierce2": formation_config["pierce2"],
+            "mystic1": formation_config["mystic1"],
+            "mystic2": formation_config["mystic2"]
+        }
+        valid = True
+        for type, preset in type_to_preset.items():
+            preset_list = []
+            if isinstance(preset, str):
+                preset = re.sub(r'[ \t\r\n]', '', preset)
+                preset = preset.split("-")
+                if len(preset) == 2:
+                    column = preset[0]
+                    row = preset[1]
+                    if (column.isdigit() and 1 <= int(column) <= 4) and (row.isdigit() and 1 <= int(row) <= 5):
+                        preset_list = [int(num) for num in preset]
+            if not preset_list:
+                logger.error(f"Failed to read {type}'s preset settings")
+                valid = False
+                continue
+            type_to_preset[type] = preset_list
+        if not valid:
+            raise RequestHumanTakeover
+        return type_to_preset
+    
     def sleep(self, num: int):
         timer = Timer(num).start()
         while not timer.reached():
@@ -128,7 +165,7 @@ class Copilot(UI):
         self.click_then_check(start_coords, MOBILIZE)
 
     def formation(self, stage: Stage, type_to_preset: dict):
-        if stage.state == StageState.SUB:
+        if stage.state in [StageState.SUB, StageState.EVENT]:
             # Select a unit to start the battle 
             self.choose_unit(1)
             if type_to_preset:
@@ -314,11 +351,11 @@ class Copilot(UI):
         # Log a warning message indicating that the check for automatic skill release is completed
         logger.warning("Check for automatic skill release completed")
 
-    def goto_mission_page(self):
+    def goto_page(self, page_check):
         # go back to mission page after fight
         while 1:
             self.device.screenshot()
-            if self.appear(MISSION_CHECK):
+            if self.appear(page_check):
                 break
             if self.appear_then_click(BATTLE_COMPLETE, interval=1):
                 continue
@@ -331,8 +368,14 @@ class Copilot(UI):
             self.device.click_record_clear()
             self.device.stuck_record_clear()
 
+    def goto_mission_page(self):
+        self.goto_page(MISSION_CHECK)
+
+    def goto_event_page(self):
+            self.goto_page(EVENT_CHECK)
+
     def fight(self, stage: Stage, manual_boss: bool):
-        if stage.state != StageState.SUB:
+        if stage.state not in [StageState.SUB, StageState.EVENT]:
             # Click to start the task
             self.begin_mission()
             # Check for skip auto over
@@ -340,6 +383,10 @@ class Copilot(UI):
             # Start moving through the grid
             self.start_action(stage.action_info, manual_boss)
             # Auto battle
-        if not manual_boss or stage.state == StageState.SUB:
+        if not manual_boss and stage.state not in [StageState.SUB, StageState.EVENT]:
             self.auto_fight()
-        self.goto_mission_page()
+        if stage.state == StageState.EVENT:
+            self.goto_event_page()
+        else:
+            self.goto_mission_page()
+            

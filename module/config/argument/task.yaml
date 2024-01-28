@@ -28,10 +28,14 @@ Copilot:
     Settings:
       - Formation
       - ManualBoss
-    Auto_Mission:
+    AutoMission:
       - Scheduler
       - Normal
       - Hard
+    AutoEvent:
+      - Scheduler
+      - EventStory
+      - EventQuest
 
 # ==================== Daily ====================
 

@@ -94,7 +94,7 @@ Normal:
     type: textarea
   Completion:
     value: clear
-    option: [ clear, three_stars]
+    option: [ clear, three_stars ]
 
 Hard:
   Enable: false
@@ -103,7 +103,19 @@ Hard:
     type: textarea
   Completion:
     value: clear
-    option: [ clear, three_stars, three_stars_chest]
+    option: [ clear, three_stars, three_stars_chest ]
+
+EventStory:
+  Enable: false
+  Completion:
+    value: clear
+    option: [ clear, three_stars ]
+
+EventQuest:
+  Enable: false
+  Completion:
+    value: clear
+    option: [ clear, three_stars ]
 
 # ==================== Daily ====================
 

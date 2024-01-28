@@ -1,5 +1,5 @@
-from tasks.mission.mission import Mission
-from tasks.mission.ui import SWITCH_NORMAL, SWITCH_HARD
+from tasks.mission.ui import MissionUI
+from tasks.stage.ap import AP
 from tasks.stage.stage import Stage
 from tasks.auto_mission.ui import AutoMissionUI
 from enum import Enum
@@ -7,7 +7,6 @@ from enum import Enum
 from module.base.timer import Timer
 from module.exception import RequestHumanTakeover
 from module.logger import logger
-from tasks.item.data_update import DataUpdate
 
 import re
 
@@ -23,51 +22,17 @@ class AutoMissionStatus(Enum):
     END = 8 # Update task
     FINISH = -1 # Indicate termination of Auto-Mission module
 
-class AutoMission(AutoMissionUI, Mission):
+class AutoMission(AP, MissionUI, AutoMissionUI):
     def __init__(self, config, device):
         super().__init__(config, device) 
         self.task: list[str, list[int], bool] = None
         self.previous_mode: str = None
         self.previous_area: int = None
-        self._stage: Stage = None
+        self.current_stage: Stage = None
         self.stages_data: dict = None
         self.default_type_to_preset: dict = self.get_default_type_to_preset()
         self.current_type_to_preset: dict = None
 
-    def get_default_type_to_preset(self) -> dict[str, list[int, int]]:
-        """
-        Validate preset settings and returs a dictionary
-        mapping each type to its preset e.g {burst1: [1, 1]}
-        """
-        type_to_preset: dict[str, str] =  {
-            "burst1": self.config.Formation_burst1,
-            "burst2": self.config.Formation_burst2,
-            "pierce1": self.config.Formation_pierce1,
-            "pierce2": self.config.Formation_pierce2,
-            "mystic1": self.config.Formation_mystic1,
-            "mystic2": self.config.Formation_mystic2
-        }
-        valid = True
-        for type, preset in type_to_preset.items():
-            preset_list = []
-            if isinstance(preset, str):
-                preset = re.sub(r'[ \t\r\n]', '', preset)
-                preset = preset.split("-")
-                if len(preset) == 2:
-                    column = preset[0]
-                    row = preset[1]
-                    if (column.isdigit() and 1 <= int(column) <= 4) and (row.isdigit() and 1 <= int(row) <= 5):
-                        preset_list = [int(num) for num in preset]
-            if not preset_list:
-                logger.error(f"Failed to read {type}'s preset settings")
-                valid = False
-                continue
-            type_to_preset[type] = preset_list
-
-        if not valid:
-            raise RequestHumanTakeover
-        return type_to_preset
-        
     def validate_area(self, mode, area_input) -> list[int]:
         """
         Validate the area input and returns the area as a list of integers
@@ -87,28 +52,6 @@ class AutoMission(AutoMissionUI, Mission):
             mode_name = "Normal" if mode == "N" else "Hard"
             logger.error(f"Failed to read Mission {mode_name}'s area settings")
             return None
-        
-    def find_alternative(self, type: str, preset_list: list[list[int, int]]) -> list[list[int, int]]:
-        if not self.config.Formation_Substitute:
-            return None
-        
-        alternatives_dictionary = {
-            'pierce1': ['pierce2', 'burst1', 'burst2', 'mystic1', 'mystic2'],
-            'pierce2': ['burst1', 'burst2', 'mystic1', 'mystic2'],
-            'burst1': ['burst2', 'pierce1', 'pierce2', 'mystic1', 'mystic2'],
-            'burst2': ['pierce1', 'pierce2', 'mystic1', 'mystic2'],
-            'mystic1': ['mystic2', 'burst1', 'burst2', 'pierce1', 'pierce2'],
-            'mystic2': ['burst1', 'burst2', 'pierce1', 'pierce2'],
-        }
-        alternatives = alternatives_dictionary[type]
-        for alternative in alternatives:
-            alternative_preset = self.default_type_to_preset[alternative]
-            if alternative_preset not in preset_list:
-                preset_list.append(alternative_preset)
-                logger.warning(f"{type} was replaced by {alternative}")
-                return preset_list
-        logger.error(f"Unable to find replacements for {type}")
-        return None
             
     @property
     def mission_info(self) -> list[str, list[int], bool]:
@@ -133,6 +76,12 @@ class AutoMission(AutoMissionUI, Mission):
             return list(filter(lambda x: x[1], info))
         else:
             raise RequestHumanTakeover
+        
+    @property
+    def stage_ap(self):
+        if self.current_mode == "N":
+            return 10
+        return 20
 
     @property
     def current_mode(self):
@@ -143,21 +92,8 @@ class AutoMission(AutoMissionUI, Mission):
         return self.task[0][1][0]
     
     @property
-    def current_stage(self):
-        return self._stage
-    
-    @current_stage.setter
-    def current_stage(self, value: Stage):
-        self._stage = value
-    
-    @property
     def current_completion_level(self):
         return self.task[0][2] 
-    
-    @property
-    def current_count(self):
-        # required to use update_ap() and get_realistic_count()
-        return 1 
     
     def update_stages_data(self) -> bool:
         if [self.previous_mode, self.previous_area] != [self.current_mode, self.current_area]:
@@ -165,6 +101,28 @@ class AutoMission(AutoMissionUI, Mission):
         if self.stages_data:
             return True
         return False
+    
+    def find_alternative(self, type: str, preset_list: list[list[int, int]]) -> list[list[int, int]]:
+        if not self.config.cross_get("Settings.Formation.Substitute"):
+            return None
+        
+        alternatives_dictionary = {
+            'pierce1': ['pierce2', 'burst1', 'burst2', 'mystic1', 'mystic2'],
+            'pierce2': ['burst1', 'burst2', 'mystic1', 'mystic2'],
+            'burst1': ['burst2', 'pierce1', 'pierce2', 'mystic1', 'mystic2'],
+            'burst2': ['pierce1', 'pierce2', 'mystic1', 'mystic2'],
+            'mystic1': ['mystic2', 'burst1', 'burst2', 'pierce1', 'pierce2'],
+            'mystic2': ['burst1', 'burst2', 'pierce1', 'pierce2'],
+        }
+        alternatives = alternatives_dictionary[type]
+        for alternative in alternatives:
+            alternative_preset = self.default_type_to_preset[alternative]
+            if alternative_preset not in preset_list:
+                preset_list.append(alternative_preset)
+                logger.warning(f"{type} was replaced by {alternative}")
+                return preset_list
+        logger.error(f"Unable to find replacements for {type}")
+        return None
     
     def update_current_type_to_preset(self) -> bool:
         if [self.previous_mode, self.previous_area] == [self.current_mode, self.current_area]:
@@ -218,7 +176,7 @@ class AutoMission(AutoMissionUI, Mission):
         match status:
             case AutoMissionStatus.AP:
                 if self.task:
-                    self.realistic_count = self.get_realistic_count()
+                    self.realistic_count = self.get_realistic_count(desired_count=1)
                     if self.realistic_count != 0:
                         return AutoMissionStatus.STAGES_DATA
                 return AutoMissionStatus.FINISH
@@ -229,9 +187,8 @@ class AutoMission(AutoMissionUI, Mission):
                 return AutoMissionStatus.END
             
             case AutoMissionStatus.NAVIGATE: 
-                switch = SWITCH_NORMAL if self.current_mode == "N" else SWITCH_HARD
                 self.navigate(self.previous_mode, self.current_mode)
-                if self.select_area(self.current_area) and self.select_mode(switch):
+                if self.select_area(self.current_area) and self.select_mode(self.current_mode):
                     return AutoMissionStatus.ENTER
                 return AutoMissionStatus.END
                         
@@ -258,7 +215,7 @@ class AutoMission(AutoMissionUI, Mission):
             
             case AutoMissionStatus.FIGHT:
                 self.fight(self.current_stage, manual_boss=self.config.ManualBoss_Enable)
-                self.update_ap()
+                self.update_ap(1)
                 self.previous_mode = self.current_mode
                 self.previous_area = self.current_area
                 return AutoMissionStatus.AP
@@ -276,13 +233,13 @@ class AutoMission(AutoMissionUI, Mission):
         return status
 
     def run(self):
-        self.task = self.valid_task
+        self.task = self.mission_info
         if self.task:
             action_timer = Timer(0.5, 1)
             status = AutoMissionStatus.AP
             
             """Update the dashboard to accurately calculate AP"""
-            DataUpdate(config=self.config, device=self.device).run()
+            self.ocr_ap()
             
             while 1:
                 self.device.screenshot()
@@ -297,6 +254,7 @@ class AutoMission(AutoMissionUI, Mission):
                 if status == AutoMissionStatus.FINISH:
                     break
         else:
+            logger.warning('Auto-Mission enabled but no task set')
             raise RequestHumanTakeover
         
         self.config.task_delay(server_update=True)

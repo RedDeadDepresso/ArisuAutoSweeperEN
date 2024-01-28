@@ -61,6 +61,14 @@ class GeneratedConfig:
     Hard_Area = None
     Hard_Completion = 'clear'  # clear, three_stars, three_stars_chest
 
+    # Group `EventStory`
+    EventStory_Enable = False
+    EventStory_Completion = 'clear'  # clear, three_stars
+
+    # Group `EventQuest`
+    EventQuest_Enable = False
+    EventQuest_Completion = 'clear'  # clear, three_stars
+
     # Group `Cafe`
     Cafe_Reward = True
     Cafe_Touch = True

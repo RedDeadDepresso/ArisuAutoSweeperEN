@@ -6,7 +6,6 @@ from tasks.base.assets.assets_base_page import BACK, MISSION_CHECK, EVENT_CHECK,
 from tasks.base.page import page_mission, page_commissions, page_work  # ,page_event
 from tasks.base.ui import UI
 from tasks.mission.assets.assets_mission import *
-from tasks.stage.ap import AP
 from tasks.stage.mission_list import StageList
 from tasks.stage.sweep import StageSweep
 
@@ -23,6 +22,10 @@ SWITCH_NORMAL.add_state("off", NORMAL_OFF)
 SWITCH_HARD = Switch("HARD_switch")
 SWITCH_HARD.add_state("on", HARD_ON)
 SWITCH_HARD.add_state("off", HARD_OFF)
+
+SWITCH_STORY = Switch("QUEST_switch")
+SWITCH_STORY.add_state("on", STORY_ON)
+SWITCH_STORY.add_state("off", STORY_OFF)
 
 SWITCH_QUEST = Switch("QUEST_switch")
 SWITCH_QUEST.add_state("on", QUEST_ON)
@@ -41,12 +44,17 @@ MODE_TO_PAGE = {
     "E": (EVENT_CHECK, None)  # page_event
 }
 
+MODE_TO_SWITCH = {
+    "N": SWITCH_NORMAL,
+    "H": SWITCH_HARD,
+    "E": SWITCH_QUEST,
+    "ES": SWITCH_STORY
+}
 
-class MissionUI(UI, AP):
+class MissionUI(UI):
     def select_mission(self, mode, stage):
         area = int(stage.split("-")[0])
-        switch = SWITCH_HARD if mode == "H" else SWITCH_NORMAL
-        if self.select_area(area) and self.select_mode(switch):
+        if self.select_area(area) and self.select_mode(mode):
             return True
         return False
 
@@ -76,12 +84,13 @@ class MissionUI(UI, AP):
                     logger.warning(f"Area {num} not found")
                     return False
 
-    def select_mode(self, switch):
+    def select_mode(self, mode):
         """
         Set switch to on. 
         Returns:
             True if switch is set, False if switch not found
         """
+        switch = MODE_TO_SWITCH[mode]
         if not switch.appear(main=self):
             logger.info(f'{switch.name} not found')
             return False
@@ -137,7 +146,7 @@ class MissionUI(UI, AP):
                 pass
 
 
-class CommissionsUI(UI, AP):
+class CommissionsUI(UI):
     """Works the same way as select_bounty"""
 
     def select_commission(self, mode):

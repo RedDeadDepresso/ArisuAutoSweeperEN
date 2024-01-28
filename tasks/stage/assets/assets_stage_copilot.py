@@ -111,24 +111,6 @@ BEGIN_MISSION = ButtonWrapper(
         button=(1093, 642, 1248, 690),
     ),
 )
-CHEST = ButtonWrapper(
-    name='CHEST',
-    jp=None,
-    en=Button(
-        file='./assets/en/stage/copilot/CHEST.png',
-        area=(150, 539, 206, 578),
-        search=(130, 519, 226, 598),
-        color=(150, 204, 233),
-        button=(150, 539, 206, 578),
-    ),
-    zht=Button(
-        file='./assets/zht/stage/copilot/CHEST.png',
-        area=(151, 544, 185, 576),
-        search=(131, 524, 205, 596),
-        color=(144, 206, 238),
-        button=(151, 544, 185, 576),
-    ),
-)
 END_PHASE = ButtonWrapper(
     name='END_PHASE',
     jp=None,

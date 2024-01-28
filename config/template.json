@@ -63,11 +63,11 @@
       "Enable": false
     }
   },
-  "Auto_Mission": {
+  "AutoMission": {
     "Scheduler": {
       "Enable": false,
       "NextRun": "2020-01-01 00:00:00",
-      "Command": "Auto_Mission",
+      "Command": "AutoMission",
       "ServerUpdate": "04:00"
     },
     "Normal": {
@@ -78,6 +78,22 @@
     "Hard": {
       "Enable": false,
       "Area": null,
+      "Completion": "clear"
+    }
+  },
+  "AutoEvent": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "AutoEvent",
+      "ServerUpdate": "04:00"
+    },
+    "EventStory": {
+      "Enable": false,
+      "Completion": "clear"
+    },
+    "EventQuest": {
+      "Enable": false,
       "Completion": "clear"
     }
   },

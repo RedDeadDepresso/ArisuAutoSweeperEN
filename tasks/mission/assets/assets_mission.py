@@ -459,3 +459,27 @@ SELECT_XP = ButtonWrapper(
         button=(1085, 163, 1230, 203),
     ),
 )
+STORY_OFF = ButtonWrapper(
+    name='STORY_OFF',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/STORY_OFF.png',
+        area=(689, 73, 848, 122),
+        search=(669, 53, 868, 142),
+        color=(231, 234, 236),
+        button=(689, 73, 848, 122),
+    ),
+    zht=None,
+)
+STORY_ON = ButtonWrapper(
+    name='STORY_ON',
+    jp=None,
+    en=Button(
+        file='./assets/en/mission/STORY_ON.png',
+        area=(685, 75, 843, 121),
+        search=(665, 55, 863, 141),
+        color=(48, 68, 77),
+        button=(685, 75, 843, 121),
+    ),
+    zht=None,
+)

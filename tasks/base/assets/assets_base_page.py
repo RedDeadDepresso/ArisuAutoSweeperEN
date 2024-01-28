@@ -686,17 +686,17 @@ WORK_GO_TO_EVENT = ButtonWrapper(
     ),
     en=Button(
         file='./assets/en/base/page/WORK_GO_TO_EVENT.png',
-        area=(67, 131, 142, 201),
-        search=(47, 111, 162, 221),
-        color=(134, 153, 166),
-        button=(67, 131, 142, 201),
+        area=(63, 132, 145, 178),
+        search=(43, 112, 165, 198),
+        color=(210, 198, 191),
+        button=(63, 132, 145, 178),
     ),
     zht=Button(
         file='./assets/zht/base/page/WORK_GO_TO_EVENT.png',
-        area=(65, 129, 142, 207),
-        search=(45, 109, 162, 227),
-        color=(136, 159, 172),
-        button=(65, 129, 142, 207),
+        area=(63, 132, 145, 178),
+        search=(43, 112, 165, 198),
+        color=(210, 198, 191),
+        button=(63, 132, 145, 178),
     ),
 )
 WORK_GO_TO_MISSION = ButtonWrapper(

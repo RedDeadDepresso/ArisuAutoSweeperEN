@@ -38,9 +38,13 @@
       "name": "Task.Settings.name",
       "help": "Task.Settings.help"
     },
-    "Auto_Mission": {
-      "name": "Task.Auto_Mission.name",
-      "help": "Task.Auto_Mission.help"
+    "AutoMission": {
+      "name": "Task.AutoMission.name",
+      "help": "Task.AutoMission.help"
+    },
+    "AutoEvent": {
+      "name": "Task.AutoEvent.name",
+      "help": "Task.AutoEvent.help"
     },
     "Cafe": {
       "name": "咖啡厅",
@@ -327,6 +331,38 @@
       "clear": "clear",
       "three_stars": "three_stars",
       "three_stars_chest": "three_stars_chest"
+    }
+  },
+  "EventStory": {
+    "_info": {
+      "name": "EventStory._info.name",
+      "help": "EventStory._info.help"
+    },
+    "Enable": {
+      "name": "EventStory.Enable.name",
+      "help": "EventStory.Enable.help"
+    },
+    "Completion": {
+      "name": "EventStory.Completion.name",
+      "help": "EventStory.Completion.help",
+      "clear": "clear",
+      "three_stars": "three_stars"
+    }
+  },
+  "EventQuest": {
+    "_info": {
+      "name": "EventQuest._info.name",
+      "help": "EventQuest._info.help"
+    },
+    "Enable": {
+      "name": "EventQuest.Enable.name",
+      "help": "EventQuest.Enable.help"
+    },
+    "Completion": {
+      "name": "EventQuest.Completion.name",
+      "help": "EventQuest.Completion.help",
+      "clear": "clear",
+      "three_stars": "three_stars"
     }
   },
   "Cafe": {

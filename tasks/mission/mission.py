@@ -1,5 +1,4 @@
 import json
-import math
 from datetime import datetime, timedelta
 from enum import Enum
 
@@ -11,7 +10,8 @@ from tasks.cafe.cafe import Cafe
 from tasks.circle.circle import Circle
 from tasks.item.data_update import DataUpdate
 from tasks.mail.mail import Mail
-from tasks.mission.ui import MissionUI, CommissionsUI, SWITCH_QUEST
+from tasks.mission.ui import MissionUI, CommissionsUI
+from tasks.stage.ap import AP
 from tasks.task.task import Task
 
 
@@ -25,7 +25,7 @@ class MissionStatus(Enum):
     FINISH = -1  # Inidicate termination of Mission module
 
 
-class Mission(MissionUI, CommissionsUI):
+class Mission(AP, MissionUI, CommissionsUI):
     @property
     def stage_ap(self):
         match self.current_mode:
@@ -150,17 +150,10 @@ class Mission(MissionUI, CommissionsUI):
         elif self.current_mode in ["CR", "XP"]:
             return self.select_commission(self.current_mode)
         elif self.current_mode == "E":
-            return self.select_mode(SWITCH_QUEST)
+            return self.select_mode("E")
         else:
             logger.error("Uknown mode")
             return False
-
-    def get_realistic_count(self) -> int:
-        """
-        Calculate the possible number of sweeps based on the current AP
-        """
-        possible_count = math.floor(self.current_ap / self.stage_ap)
-        return min(possible_count, self.current_count)
 
     def update_task(self, failure=False):
         """
@@ -183,13 +176,6 @@ class Mission(MissionUI, CommissionsUI):
         except:
             logger.error("Failed to save configuration")
             self.task = []
-
-    def update_ap(self):
-        ap = self.config.stored.AP
-        ap_old = ap.value
-        ap_new = ap_old - self.stage_ap * self.realistic_count
-        ap.set(ap_new, ap.total)
-        logger.info(f'Set AP: {ap_old} -> {ap_new}')
 
     def recharge(self) -> bool:
         """
@@ -215,7 +201,7 @@ class Mission(MissionUI, CommissionsUI):
             case MissionStatus.AP:
                 if not self.task:
                     return MissionStatus.FINISH
-                self.realistic_count = self.get_realistic_count()
+                self.realistic_count = self.get_realistic_count(self.current_count)
                 if self.realistic_count == 0 and self.recharge_AP:
                     self.recharge_AP = False
                     return MissionStatus.RECHARGE
@@ -238,7 +224,7 @@ class Mission(MissionUI, CommissionsUI):
                 return MissionStatus.AP
             case MissionStatus.SWEEP:
                 if self.do_sweep(self.current_mode, self.realistic_count):
-                    self.update_ap()
+                    self.update_ap(self.realistic_count)
                     self.update_task()
                 else:
                     self.update_task(failure=True)
@@ -264,7 +250,7 @@ class Mission(MissionUI, CommissionsUI):
                 status = MissionStatus.AP
 
                 """Update the dashboard to accurately calculate AP"""
-                DataUpdate(config=self.config, device=self.device).run()
+                self.ocr_ap()
 
                 while 1:
                     self.device.screenshot()

@@ -1,11 +1,12 @@
+import importlib
+
 from module.logger import logger
 from module.ocr.ocr import Digit
-from tasks.stage.stage import StageState, Stage
 from tasks.stage.copilot import Copilot
-from tasks.stage.assets.assets_stage_sweep import ENTER 
-from tasks.stage.assets.assets_stage_copilot import CHEST, MISSION_INFO, MOBILIZE
-from tasks.auto_mission.assets.assets_auto_mission import *
-import importlib
+from tasks.stage.stage import StageState, Stage
+from tasks.stage.assets.assets_stage_copilot import MISSION_INFO, MOBILIZE
+from tasks.stage.assets.assets_stage_enemies import *
+from tasks.stage.assets.assets_stage_sweep import CHEST, ENTER, ENTER_SUB, OCR_AREA, ONE_STAR, THREE_STARS
 
 class AutoMissionUI(Copilot):
     """

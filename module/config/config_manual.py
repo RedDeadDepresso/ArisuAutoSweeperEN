@@ -9,7 +9,7 @@ class ManualConfig:
     SCHEDULER_PRIORITY = """
     Restart
     > Cafe > TacticalChallenge > Circle > Mail
-    > DataUpdate > Bounty > Scrimmage > Schedule > Task > Shop > Auto_Mission > Mission > Momotalk
+    > DataUpdate > Bounty > Scrimmage > Schedule > Task > Shop > AutoMission > AutoEvent > Mission > Momotalk
     """
 
     """
