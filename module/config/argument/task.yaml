@@ -19,6 +19,20 @@ Alas:
       - Scheduler
       - ItemStorage
 
+# ==================== Copilot ====================
+
+Copilot:
+  menu: 'collapse'
+  page: 'setting'
+  tasks:
+    Settings:
+      - Formation
+      - ManualBoss
+    Auto_Mission:
+      - Scheduler
+      - Normal
+      - Hard
+
 # ==================== Daily ====================
 
 Daily:

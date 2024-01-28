@@ -73,6 +73,38 @@ Optimization:
     value: goto_main
     option: [ stay_there, goto_main, close_game, exit_aas, exit_emulator, exit_aas_emulator, shutdown ]
 
+# ==================== Copilot ====================
+
+Formation:
+  burst1: 1-1
+  burst2: 1-2
+  pierce1: 1-3
+  pierce2: 1-4
+  mystic1: 1-5
+  mystic2: 2-1
+  Substitute: false
+
+ManualBoss:
+  Enable: false
+  
+Normal:
+  Enable: false
+  Area: 
+    value: null
+    type: textarea
+  Completion:
+    value: clear
+    option: [ clear, three_stars]
+
+Hard:
+  Enable: false
+  Area: 
+    value: null
+    type: textarea
+  Completion:
+    value: clear
+    option: [ clear, three_stars, three_stars_chest]
+
 # ==================== Daily ====================
 
 Cafe:
@@ -148,53 +180,6 @@ Choice7:
     value: null
     type: textarea
 
-Bounty:
-  OnError:
-    value: skip
-    option: [ stop, skip ]
-
-Highway:
-  Stage:
-    value: 0
-    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-  Count: 2
-DesertRailroad:
-  Stage:
-    value: 0
-    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-  Count: 2
-Schoolhouse:
-  Stage:
-    value: 0
-    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-  Count: 2
-
-Scrimmage:
-  OnError:
-    value: skip
-    option: [ stop, skip ]
-
-Trinity:
-  Stage:
-    value: 0
-    option: [ 0, 1, 2, 3, 4 ]
-  Count: 2
-Gehenna:
-  Stage:
-    value: 0
-    option: [ 0, 1, 2, 3, 4 ]
-  Count: 2
-Millennium:
-  Stage:
-    value: 0
-    option: [ 0, 1, 2, 3, 4 ]
-  Count: 2
-
-TacticalChallenge:
-  PlayerSelect:
-    value: 0
-    option: [ 0, 1, 2, 3 ]
-
 NormalShop:
   Enable: false
   Purchases:
@@ -241,6 +226,55 @@ TacticalChallengeShop:
   "13": false
   "14": false
   "15": false
+
+# ==================== Farm ====================
+
+Bounty:
+  OnError:
+    value: skip
+    option: [ stop, skip ]
+
+Highway:
+  Stage:
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Count: 2
+DesertRailroad:
+  Stage:
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Count: 2
+Schoolhouse:
+  Stage:
+    value: 0
+    option: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+  Count: 2
+
+Scrimmage:
+  OnError:
+    value: skip
+    option: [ stop, skip ]
+
+Trinity:
+  Stage:
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
+  Count: 2
+Gehenna:
+  Stage:
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
+  Count: 2
+Millennium:
+  Stage:
+    value: 0
+    option: [ 0, 1, 2, 3, 4 ]
+  Count: 2
+
+TacticalChallenge:
+  PlayerSelect:
+    value: 0
+    option: [ 0, 1, 2, 3 ]
 
 ItemStorage:
   AP:

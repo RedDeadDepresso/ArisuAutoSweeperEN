@@ -4,6 +4,10 @@
       "name": "AAS",
       "help": ""
     },
+    "Copilot": {
+      "name": "Copilot",
+      "help": ""
+    },
     "Daily": {
       "name": "Daily",
       "help": ""
@@ -28,6 +32,14 @@
     },
     "DataUpdate": {
       "name": "Dashboard Upd",
+      "help": ""
+    },
+    "Settings": {
+      "name": "Settings",
+      "help": ""
+    },
+    "Auto_Mission": {
+      "name": "Auto-Mission",
       "help": ""
     },
     "Cafe": {
@@ -230,6 +242,91 @@
       "exit_emulator": "Exit Emulator",
       "exit_aas_emulator": "Exit AAS & Emulator",
       "shutdown": "Shutdown"
+    }
+  },
+  "Formation": {
+    "_info": {
+      "name": "Formation",
+      "help": "AAS will choose the unit from the Preset List in the Layout after entering the Unit Formation Page. The format is preset-row, for example 1-1 means choose preset 1 row 1. Please make sure the presets are set to their original names (1,2,3,4). It is highly recommended that you set them up to be unique."
+    },
+    "burst1": {
+      "name": "Explosive 1",
+      "help": ""
+    },
+    "burst2": {
+      "name": "Explosive 2",
+      "help": ""
+    },
+    "pierce1": {
+      "name": "Piercing 1",
+      "help": ""
+    },
+    "pierce2": {
+      "name": "Piercing 2",
+      "help": ""
+    },
+    "mystic1": {
+      "name": "Mystic 1",
+      "help": ""
+    },
+    "mystic2": {
+      "name": "Mystic 2",
+      "help": ""
+    },
+    "Substitute": {
+      "name": "Find Alternatives",
+      "help": "In case you set the preset for some types to be the same and the stage requires all of those types, AAS will try to find alternatives. For example, if you set Explosive 1 and Explosive 2 to be the same and the stage requires both of them, AAS will replace Explosive 2 with Piercing 1."
+    }
+  },
+  "ManualBoss": {
+    "_info": {
+      "name": "Manual Boss",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": "AAS will wait for the user to take over when encountering the boss"
+    }
+  },
+  "Normal": {
+    "_info": {
+      "name": "Normal",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Area": {
+      "name": "Area",
+      "help": "Currently only between 4 and 16. Use > to connect multiple areas. Example: 6 > 7 > 8"
+    },
+    "Completion": {
+      "name": "Completion level",
+      "help": "Completion",
+      "clear": "Clear",
+      "three_stars": "3 Stars"
+    }
+  },
+  "Hard": {
+    "_info": {
+      "name": "Hard",
+      "help": ""
+    },
+    "Enable": {
+      "name": "Enable",
+      "help": ""
+    },
+    "Area": {
+      "name": "Area",
+      "help": "Currently only between 6 and 16. Use > to connect multiple areas. Example: 6 > 7 > 8"
+    },
+    "Completion": {
+      "name": "Completion level",
+      "help": "",
+      "clear": "Clear",
+      "three_stars": "3 Stars",
+      "three_stars_chest": "3 Stars + Chest"
     }
   },
   "Cafe": {
@@ -473,173 +570,6 @@
       "help": ""
     }
   },
-  "Bounty": {
-    "_info": {
-      "name": "Bounty Settings",
-      "help": ""
-    },
-    "OnError": {
-      "name": "Error Handling",
-      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
-      "stop": "Stop script",
-      "skip": "Skip current task"
-    }
-  },
-  "Highway": {
-    "_info": {
-      "name": "Overpass",
-      "help": ""
-    },
-    "Stage": {
-      "name": "Select Stage",
-      "help": "",
-      "0": "Auto select",
-      "1": "01 - Overpass A",
-      "2": "02 - Overpass B",
-      "3": "03 - Overpass C",
-      "4": "04 - Overpass D",
-      "5": "05 - Overpass E",
-      "6": "06 - Overpass F",
-      "7": "07 - Overpass G",
-      "8": "08 - Overpass H",
-      "9": "09 - Overpass I"
-    },
-    "Count": {
-      "name": "Sweep X times",
-      "help": "Sweep the selected stage for X times"
-    }
-  },
-  "DesertRailroad": {
-    "_info": {
-      "name": "Desert Railroad",
-      "help": ""
-    },
-    "Stage": {
-      "name": "Select Stage",
-      "help": "",
-      "0": "Auto select",
-      "1": "01 - Abandoned Train A",
-      "2": "02 - Abandoned Train B",
-      "3": "03 - Abandoned Train C",
-      "4": "04 - Abandoned Train D",
-      "5": "05 - Abandoned Train E",
-      "6": "06 - Abandoned Train F",
-      "7": "07 - Abandoned Train G",
-      "8": "08 - Abandoned Train H",
-      "9": "09 - Abandoned Train I"
-    },
-    "Count": {
-      "name": "Sweep X times",
-      "help": "Sweep the selected stage for X times"
-    }
-  },
-  "Schoolhouse": {
-    "_info": {
-      "name": "Classroom",
-      "help": ""
-    },
-    "Stage": {
-      "name": "Select Stage",
-      "help": "",
-      "0": "Auto select",
-      "1": "01 - Besieged Classroom A",
-      "2": "02 - Besieged Classroom B",
-      "3": "03 - Besieged Classroom C",
-      "4": "04 - Besieged Classroom D",
-      "5": "05 - Besieged Classroom E",
-      "6": "06 - Besieged Classroom F",
-      "7": "07 - Besieged Classroom G",
-      "8": "08 - Besieged Classroom H",
-      "9": "09 - Besieged Classroom I"
-    },
-    "Count": {
-      "name": "Sweep X times",
-      "help": "Sweep the selected stage for X times"
-    }
-  },
-  "Scrimmage": {
-    "_info": {
-      "name": "Scrimmage Settings",
-      "help": ""
-    },
-    "OnError": {
-      "name": "Error Handling",
-      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
-      "stop": "Stop script",
-      "skip": "Skip current task"
-    }
-  },
-  "Trinity": {
-    "_info": {
-      "name": "Trinity",
-      "help": ""
-    },
-    "Stage": {
-      "name": "Select Stage",
-      "help": "",
-      "0": "Auto select",
-      "1": "01 - Trinity A",
-      "2": "02 - Trinity B",
-      "3": "03 - Trinity C",
-      "4": "04 - Trinity D"
-    },
-    "Count": {
-      "name": "Sweep X times",
-      "help": "Sweep the selected stage for X times"
-    }
-  },
-  "Gehenna": {
-    "_info": {
-      "name": "Gehenna",
-      "help": ""
-    },
-    "Stage": {
-      "name": "Select Stage",
-      "help": "",
-      "0": "Auto select",
-      "1": "01 - Gehenna A",
-      "2": "02 - Gehenna B",
-      "3": "03 - Gehenna C",
-      "4": "04 - Gehenna D"
-    },
-    "Count": {
-      "name": "Sweep X times",
-      "help": "Sweep the selected stage for X times"
-    }
-  },
-  "Millennium": {
-    "_info": {
-      "name": "Millennium",
-      "help": ""
-    },
-    "Stage": {
-      "name": "Select Stage",
-      "help": "",
-      "0": "Auto select",
-      "1": "01 - Millennium A",
-      "2": "02 - Millennium B",
-      "3": "03 - Millennium C",
-      "4": "04 - Millennium D"
-    },
-    "Count": {
-      "name": "Sweep X times",
-      "help": "Sweep the selected stage for X times"
-    }
-  },
-  "TacticalChallenge": {
-    "_info": {
-      "name": "Tactical Challenge Settings",
-      "help": ""
-    },
-    "PlayerSelect": {
-      "name": "Select Player",
-      "help": "",
-      "0": "Random",
-      "1": "First",
-      "2": "Second",
-      "3": "Third"
-    }
-  },
   "NormalShop": {
     "_info": {
       "name": "Normal Shop Settings",
@@ -814,6 +744,173 @@
     "15": {
       "name": "15",
       "help": "x125k Credits - 100 Coins"
+    }
+  },
+  "Bounty": {
+    "_info": {
+      "name": "Bounty Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
+  "Highway": {
+    "_info": {
+      "name": "Overpass",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Overpass A",
+      "2": "02 - Overpass B",
+      "3": "03 - Overpass C",
+      "4": "04 - Overpass D",
+      "5": "05 - Overpass E",
+      "6": "06 - Overpass F",
+      "7": "07 - Overpass G",
+      "8": "08 - Overpass H",
+      "9": "09 - Overpass I"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "DesertRailroad": {
+    "_info": {
+      "name": "Desert Railroad",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Abandoned Train A",
+      "2": "02 - Abandoned Train B",
+      "3": "03 - Abandoned Train C",
+      "4": "04 - Abandoned Train D",
+      "5": "05 - Abandoned Train E",
+      "6": "06 - Abandoned Train F",
+      "7": "07 - Abandoned Train G",
+      "8": "08 - Abandoned Train H",
+      "9": "09 - Abandoned Train I"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Schoolhouse": {
+    "_info": {
+      "name": "Classroom",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Besieged Classroom A",
+      "2": "02 - Besieged Classroom B",
+      "3": "03 - Besieged Classroom C",
+      "4": "04 - Besieged Classroom D",
+      "5": "05 - Besieged Classroom E",
+      "6": "06 - Besieged Classroom F",
+      "7": "07 - Besieged Classroom G",
+      "8": "08 - Besieged Classroom H",
+      "9": "09 - Besieged Classroom I"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Scrimmage": {
+    "_info": {
+      "name": "Scrimmage Settings",
+      "help": ""
+    },
+    "OnError": {
+      "name": "Error Handling",
+      "help": "Perform the selected action when an error occurs (ticket not enough or any invalid setting)",
+      "stop": "Stop script",
+      "skip": "Skip current task"
+    }
+  },
+  "Trinity": {
+    "_info": {
+      "name": "Trinity",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Trinity A",
+      "2": "02 - Trinity B",
+      "3": "03 - Trinity C",
+      "4": "04 - Trinity D"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Gehenna": {
+    "_info": {
+      "name": "Gehenna",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Gehenna A",
+      "2": "02 - Gehenna B",
+      "3": "03 - Gehenna C",
+      "4": "04 - Gehenna D"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "Millennium": {
+    "_info": {
+      "name": "Millennium",
+      "help": ""
+    },
+    "Stage": {
+      "name": "Select Stage",
+      "help": "",
+      "0": "Auto select",
+      "1": "01 - Millennium A",
+      "2": "02 - Millennium B",
+      "3": "03 - Millennium C",
+      "4": "04 - Millennium D"
+    },
+    "Count": {
+      "name": "Sweep X times",
+      "help": "Sweep the selected stage for X times"
+    }
+  },
+  "TacticalChallenge": {
+    "_info": {
+      "name": "Tactical Challenge Settings",
+      "help": ""
+    },
+    "PlayerSelect": {
+      "name": "Select Player",
+      "help": "",
+      "0": "Random",
+      "1": "First",
+      "2": "Second",
+      "3": "Third"
     }
   },
   "ItemStorage": {

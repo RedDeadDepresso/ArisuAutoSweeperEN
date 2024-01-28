@@ -39,6 +39,28 @@ class GeneratedConfig:
     Optimization_CombatScreenshotInterval = 1.0
     Optimization_WhenTaskQueueEmpty = 'goto_main'  # stay_there, goto_main, close_game, exit_aas, exit_emulator, exit_aas_emulator, shutdown
 
+    # Group `Formation`
+    Formation_burst1 = '1-1'
+    Formation_burst2 = '1-2'
+    Formation_pierce1 = '1-3'
+    Formation_pierce2 = '1-4'
+    Formation_mystic1 = '1-5'
+    Formation_mystic2 = '2-1'
+    Formation_Substitute = False
+
+    # Group `ManualBoss`
+    ManualBoss_Enable = False
+
+    # Group `Normal`
+    Normal_Enable = False
+    Normal_Area = None
+    Normal_Completion = 'clear'  # clear, three_stars
+
+    # Group `Hard`
+    Hard_Enable = False
+    Hard_Area = None
+    Hard_Completion = 'clear'  # clear, three_stars, three_stars_chest
+
     # Group `Cafe`
     Cafe_Reward = True
     Cafe_Touch = True
@@ -83,39 +105,6 @@ class GeneratedConfig:
     Choice7_Location = 'None'  # None, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     Choice7_Classrooms = None
 
-    # Group `Bounty`
-    Bounty_OnError = 'skip'  # stop, skip
-
-    # Group `Highway`
-    Highway_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-    Highway_Count = 2
-
-    # Group `DesertRailroad`
-    DesertRailroad_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-    DesertRailroad_Count = 2
-
-    # Group `Schoolhouse`
-    Schoolhouse_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-    Schoolhouse_Count = 2
-
-    # Group `Scrimmage`
-    Scrimmage_OnError = 'skip'  # stop, skip
-
-    # Group `Trinity`
-    Trinity_Stage = 0  # 0, 1, 2, 3, 4
-    Trinity_Count = 2
-
-    # Group `Gehenna`
-    Gehenna_Stage = 0  # 0, 1, 2, 3, 4
-    Gehenna_Count = 2
-
-    # Group `Millennium`
-    Millennium_Stage = 0  # 0, 1, 2, 3, 4
-    Millennium_Count = 2
-
-    # Group `TacticalChallenge`
-    TacticalChallenge_PlayerSelect = 0  # 0, 1, 2, 3
-
     # Group `NormalShop`
     NormalShop_Enable = False
     NormalShop_Purchases = 1  # 1, 2, 3, 4
@@ -158,6 +147,39 @@ class GeneratedConfig:
     TacticalChallengeShop_13 = False
     TacticalChallengeShop_14 = False
     TacticalChallengeShop_15 = False
+
+    # Group `Bounty`
+    Bounty_OnError = 'skip'  # stop, skip
+
+    # Group `Highway`
+    Highway_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Highway_Count = 2
+
+    # Group `DesertRailroad`
+    DesertRailroad_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    DesertRailroad_Count = 2
+
+    # Group `Schoolhouse`
+    Schoolhouse_Stage = 0  # 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+    Schoolhouse_Count = 2
+
+    # Group `Scrimmage`
+    Scrimmage_OnError = 'skip'  # stop, skip
+
+    # Group `Trinity`
+    Trinity_Stage = 0  # 0, 1, 2, 3, 4
+    Trinity_Count = 2
+
+    # Group `Gehenna`
+    Gehenna_Stage = 0  # 0, 1, 2, 3, 4
+    Gehenna_Count = 2
+
+    # Group `Millennium`
+    Millennium_Stage = 0  # 0, 1, 2, 3, 4
+    Millennium_Count = 2
+
+    # Group `TacticalChallenge`
+    TacticalChallenge_PlayerSelect = 0  # 0, 1, 2, 3
 
     # Group `ItemStorage`
     ItemStorage_AP = {}
