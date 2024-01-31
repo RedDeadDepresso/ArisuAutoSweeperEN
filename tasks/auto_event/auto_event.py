@@ -30,7 +30,7 @@ class AutoEvent(AP, MissionUI, AutoEventUI):
 
     @property
     def stage_ap(self):
-        if self.current_mode == "S":
+        if self.current_mode == "ES":
             return 10
         if self.current_stage.name >= "09":
             return 20
