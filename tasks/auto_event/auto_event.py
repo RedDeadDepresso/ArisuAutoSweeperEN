@@ -1,6 +1,6 @@
 from tasks.mission.ui import MissionUI
 from tasks.stage.ap import AP
-from tasks.stage.stage import Stage
+from tasks.stage.stage import StageState, Stage
 from tasks.auto_event.ui import AutoEventUI
 from enum import Enum
 
@@ -14,9 +14,10 @@ class AutoEventStatus(Enum):
     ENTER = 2 # Enter the first stage in the stage list
     CHECK = 3 # Check stages and find a stage that requires to be completed
     START = 4 # Start the stage
-    FORMATION = 5 # Select units based on the types required by the stage
-    FIGHT = 6 # Fight the stage
-    END = 7 # Update task
+    STORY = 5
+    FORMATION = 6 # Select units based on the types required by the stage
+    FIGHT = 7 # Fight the stage
+    END = 8 # Update task
     FINISH = -1 # Indicate termination of Auto-Mission module
 
 class AutoEvent(AP, MissionUI, AutoEventUI):  
@@ -85,7 +86,13 @@ class AutoEvent(AP, MissionUI, AutoEventUI):
             
             case AutoEventStatus.START:
                 self.start_stage(self.current_stage)
+                if self.current_stage.state == StageState.EPISODE:
+                    return AutoEventStatus.STORY
                 return AutoEventStatus.FORMATION
+            
+            case AutoEventStatus.STORY:
+                self.skip_story()
+                return AutoEventStatus.ENTER
                                 
             case AutoEventStatus.FORMATION:
                 self.formation(self.current_stage, self.default_type_to_preset)
@@ -94,7 +101,7 @@ class AutoEvent(AP, MissionUI, AutoEventUI):
             case AutoEventStatus.FIGHT:
                 self.fight(self.current_stage, manual_boss=False)
                 self.update_ap(1)
-                return AutoEventStatus.NAVIGATE
+                return AutoEventStatus.ENTER
 
             case AutoEventStatus.END:
                 self.task.pop(0)

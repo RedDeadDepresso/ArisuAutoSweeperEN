@@ -69,6 +69,18 @@ ENTER = ButtonWrapper(
         button=(764, 518, 1109, 574),
     ),
 )
+ENTER_EPISODE = ButtonWrapper(
+    name='ENTER_EPISODE',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/ENTER_EPISODE.png',
+        area=(531, 496, 746, 534),
+        search=(511, 476, 766, 554),
+        color=(205, 185, 62),
+        button=(531, 496, 746, 534),
+    ),
+    zht=None,
+)
 ENTER_SUB = ButtonWrapper(
     name='ENTER_SUB',
     jp=None,
@@ -266,6 +278,30 @@ PLUS = ButtonWrapper(
         color=(233, 243, 246),
         button=(995, 278, 1034, 322),
     ),
+)
+PYROXENE_LOWER = ButtonWrapper(
+    name='PYROXENE_LOWER',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/PYROXENE_LOWER.png',
+        area=(160, 540, 197, 559),
+        search=(140, 520, 217, 579),
+        color=(164, 226, 252),
+        button=(160, 540, 197, 559),
+    ),
+    zht=None,
+)
+PYROXENE_UPPER = ButtonWrapper(
+    name='PYROXENE_UPPER',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/PYROXENE_UPPER.png',
+        area=(363, 342, 417, 363),
+        search=(343, 322, 437, 383),
+        color=(182, 231, 252),
+        button=(363, 342, 417, 363),
+    ),
+    zht=None,
 )
 SKIP_OK_LOWER = ButtonWrapper(
     name='SKIP_OK_LOWER',

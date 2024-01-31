@@ -6,7 +6,7 @@ from module.logger import logger
 from module.ui.switch import Switch
 from module.ocr.ocr import Digit
 from tasks.base.ui import UI
-from tasks.base.assets.assets_base_page import MISSION_CHECK, EVENT_CHECK
+from tasks.base.assets.assets_base_page import MISSION_CHECK
 from tasks.stage.assets.assets_stage_copilot import *
 from tasks.stage.stage import StageState, Stage
 
@@ -165,7 +165,7 @@ class Copilot(UI):
         self.click_then_check(start_coords, MOBILIZE)
 
     def formation(self, stage: Stage, type_to_preset: dict):
-        if stage.state in [StageState.SUB, StageState.EVENT]:
+        if stage.state == StageState.SUB:
             # Select a unit to start the battle 
             self.choose_unit(1)
             if type_to_preset:
@@ -342,8 +342,6 @@ class Copilot(UI):
             self.sleep(1)
 
     def auto_fight(self):
-        # Pause for 3 seconds
-        self.sleep(3)
         # Wait for the game stage to finish loading
         self.handle_loading()
         # Change the settings for automatic fighting
@@ -351,11 +349,11 @@ class Copilot(UI):
         # Log a warning message indicating that the check for automatic skill release is completed
         logger.warning("Check for automatic skill release completed")
 
-    def goto_page(self, page_check):
+    def goto_parent_page(self):
         # go back to mission page after fight
         while 1:
             self.device.screenshot()
-            if self.appear(page_check):
+            if self.appear(MISSION_CHECK):
                 break
             if self.appear_then_click(BATTLE_COMPLETE, interval=1):
                 continue
@@ -368,14 +366,8 @@ class Copilot(UI):
             self.device.click_record_clear()
             self.device.stuck_record_clear()
 
-    def goto_mission_page(self):
-        self.goto_page(MISSION_CHECK)
-
-    def goto_event_page(self):
-            self.goto_page(EVENT_CHECK)
-
     def fight(self, stage: Stage, manual_boss: bool):
-        if stage.state not in [StageState.SUB, StageState.EVENT]:
+        if stage.state != StageState.SUB:
             # Click to start the task
             self.begin_mission()
             # Check for skip auto over
@@ -383,10 +375,7 @@ class Copilot(UI):
             # Start moving through the grid
             self.start_action(stage.action_info, manual_boss)
             # Auto battle
-        if not manual_boss and stage.state not in [StageState.SUB, StageState.EVENT]:
+        if not manual_boss or stage.state == StageState.SUB:
             self.auto_fight()
-        if stage.state == StageState.EVENT:
-            self.goto_event_page()
-        else:
-            self.goto_mission_page()
+        self.goto_parent_page()
             
