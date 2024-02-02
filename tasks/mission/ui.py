@@ -99,7 +99,9 @@ class MissionUI(UI):
 
     def enter_stage(self, mode, index: int) -> bool:
         list = EVENT_LIST if mode == "E" else SHARED_LIST
-        if list.select_index_enter(self, index):
+        if mode == "H" and list.select_index_enter(self, index):
+            return True
+        elif mode != "H" and list.select_index_enter(self, index, sweepable=False):
             return True
         return False
 
