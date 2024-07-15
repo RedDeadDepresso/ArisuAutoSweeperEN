@@ -246,6 +246,163 @@
       }
     }
   },
+  "Settings": {
+    "Formation": {
+      "burst1": {
+        "type": "input",
+        "value": "1-1"
+      },
+      "burst2": {
+        "type": "input",
+        "value": "1-2"
+      },
+      "pierce1": {
+        "type": "input",
+        "value": "1-3"
+      },
+      "pierce2": {
+        "type": "input",
+        "value": "1-4"
+      },
+      "mystic1": {
+        "type": "input",
+        "value": "1-5"
+      },
+      "mystic2": {
+        "type": "input",
+        "value": "2-1"
+      },
+      "Substitute": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "ManualBoss": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      }
+    }
+  },
+  "AutoMission": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "AutoMission",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "Normal": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Area": {
+        "type": "textarea",
+        "value": null
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars"
+        ]
+      }
+    },
+    "Hard": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Area": {
+        "type": "textarea",
+        "value": null
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars",
+          "three_stars_chest"
+        ]
+      }
+    }
+  },
+  "AutoEvent": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "AutoEvent",
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "04:00",
+        "display": "hide"
+      }
+    },
+    "EventStory": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars"
+        ]
+      }
+    },
+    "EventQuest": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Completion": {
+        "type": "select",
+        "value": "clear",
+        "option": [
+          "clear",
+          "three_stars"
+        ]
+      }
+    }
+  },
   "Cafe": {
     "Scheduler": {
       "Enable": {

@@ -27,6 +27,24 @@ CHECK_SWEEP = ButtonWrapper(
         button=(651, 182, 702, 210),
     ),
 )
+CHEST = ButtonWrapper(
+    name='CHEST',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/CHEST.png',
+        area=(150, 539, 206, 578),
+        search=(130, 519, 226, 598),
+        color=(150, 204, 233),
+        button=(150, 539, 206, 578),
+    ),
+    zht=Button(
+        file='./assets/zht/stage/sweep/CHEST.png',
+        area=(151, 544, 185, 576),
+        search=(131, 524, 205, 596),
+        color=(144, 206, 238),
+        button=(151, 544, 185, 576),
+    ),
+)
 ENTER = ButtonWrapper(
     name='ENTER',
     jp=Button(
@@ -49,6 +67,36 @@ ENTER = ButtonWrapper(
         search=(744, 498, 1129, 594),
         color=(226, 210, 67),
         button=(764, 518, 1109, 574),
+    ),
+)
+ENTER_EPISODE = ButtonWrapper(
+    name='ENTER_EPISODE',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/ENTER_EPISODE.png',
+        area=(531, 496, 746, 534),
+        search=(511, 476, 766, 554),
+        color=(205, 185, 62),
+        button=(531, 496, 746, 534),
+    ),
+    zht=None,
+)
+ENTER_SUB = ButtonWrapper(
+    name='ENTER_SUB',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/ENTER_SUB.png',
+        area=(541, 494, 737, 528),
+        search=(521, 474, 757, 548),
+        color=(201, 182, 59),
+        button=(541, 494, 737, 528),
+    ),
+    zht=Button(
+        file='./assets/zht/stage/sweep/ENTER_SUB.png',
+        area=(553, 490, 712, 538),
+        search=(533, 470, 732, 558),
+        color=(209, 191, 62),
+        button=(553, 490, 712, 538),
     ),
 )
 EXIT = ButtonWrapper(
@@ -147,6 +195,24 @@ MINUS = ButtonWrapper(
         button=(838, 279, 876, 320),
     ),
 )
+OCR_AREA = ButtonWrapper(
+    name='OCR_AREA',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/OCR_AREA.png',
+        area=(119, 194, 166, 243),
+        search=(99, 174, 186, 263),
+        color=(228, 230, 232),
+        button=(119, 194, 166, 243),
+    ),
+    zht=Button(
+        file='./assets/zht/stage/sweep/OCR_AREA.png',
+        area=(123, 192, 183, 240),
+        search=(103, 172, 203, 260),
+        color=(223, 225, 228),
+        button=(123, 192, 183, 240),
+    ),
+)
 OCR_NUM = ButtonWrapper(
     name='OCR_NUM',
     jp=Button(
@@ -169,6 +235,24 @@ OCR_NUM = ButtonWrapper(
         search=(876, 261, 995, 343),
         color=(81, 94, 113),
         button=(896, 281, 975, 323),
+    ),
+)
+ONE_STAR = ButtonWrapper(
+    name='ONE_STAR',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/ONE_STAR.png',
+        area=(148, 349, 183, 390),
+        search=(128, 329, 203, 410),
+        color=(240, 235, 215),
+        button=(148, 349, 183, 390),
+    ),
+    zht=Button(
+        file='./assets/zht/stage/sweep/ONE_STAR.png',
+        area=(148, 349, 183, 390),
+        search=(128, 329, 203, 410),
+        color=(240, 235, 215),
+        button=(148, 349, 183, 390),
     ),
 )
 PLUS = ButtonWrapper(
@@ -194,6 +278,30 @@ PLUS = ButtonWrapper(
         color=(233, 243, 246),
         button=(995, 278, 1034, 322),
     ),
+)
+PYROXENE_LOWER = ButtonWrapper(
+    name='PYROXENE_LOWER',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/PYROXENE_LOWER.png',
+        area=(160, 540, 197, 559),
+        search=(140, 520, 217, 579),
+        color=(164, 226, 252),
+        button=(160, 540, 197, 559),
+    ),
+    zht=None,
+)
+PYROXENE_UPPER = ButtonWrapper(
+    name='PYROXENE_UPPER',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/PYROXENE_UPPER.png',
+        area=(363, 342, 417, 363),
+        search=(343, 322, 437, 383),
+        color=(182, 231, 252),
+        button=(363, 342, 417, 363),
+    ),
+    zht=None,
 )
 SKIP_OK_LOWER = ButtonWrapper(
     name='SKIP_OK_LOWER',
@@ -313,5 +421,23 @@ SWEEP_CONFIRM = ButtonWrapper(
         search=(576, 122, 698, 200),
         color=(185, 193, 202),
         button=(662, 474, 869, 534),
+    ),
+)
+THREE_STARS = ButtonWrapper(
+    name='THREE_STARS',
+    jp=None,
+    en=Button(
+        file='./assets/en/stage/sweep/THREE_STARS.png',
+        area=(158, 357, 177, 441),
+        search=(138, 337, 197, 461),
+        color=(234, 222, 173),
+        button=(158, 357, 177, 441),
+    ),
+    zht=Button(
+        file='./assets/zht/stage/sweep/THREE_STARS.png',
+        area=(158, 357, 177, 441),
+        search=(138, 337, 197, 461),
+        color=(234, 222, 173),
+        button=(158, 357, 177, 441),
     ),
 )

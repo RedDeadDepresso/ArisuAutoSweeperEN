@@ -11,7 +11,7 @@ SCRIMMAGE_LIST = StageList('ScrimmageList')
 SCRIMMAGE_SWEEP = StageSweep('ScrimmageSweep', 6)
 
 
-class ScrimmageUI(UI, AP):
+class ScrimmageUI(UI):
     def select_scrimmage(self, dest_enter: ButtonWrapper, dest_check: ButtonWrapper):
         timer = Timer(5, 10).start()
         while 1:

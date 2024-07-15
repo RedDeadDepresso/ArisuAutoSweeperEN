@@ -1,8 +1,10 @@
-from module.base.base import ModuleBase
+import math
+
 from module.logger import logger
+from tasks.base.page import page_work
+from tasks.item.data_update import DataUpdate
 
-
-class AP(ModuleBase):
+class AP(DataUpdate):
     _stage = 0
 
     @property
@@ -46,3 +48,14 @@ class AP(ModuleBase):
         cost = self.stage_ap_cost(stage) * count
         logger.info(f'Check AP: {self.current_ap} / {cost}')
         return self.current_ap >= cost
+    
+    def ocr_ap(self):
+        self.ui_ensure(page_work, acquire_lang_checked=False)
+        self._get_data()
+
+    def get_realistic_count(self, desired_count: int) -> int:
+        """
+        Calculate the possible number of sweeps based on the current AP
+        """
+        possible_count = math.floor(self.current_ap / self.stage_ap)
+        return min(possible_count, desired_count)
